@@ -12,7 +12,22 @@ $(document).ready(function(){
 
 	$("#forward").click(function(e){
 		e.preventDefault();
-		index = tracks.indexOf(activeTrack);
+		skipForward();
+	});
+
+	$("#back").click(function(e){
+		e.preventDefault();
+		skipBack();
+	});
+
+	$("#playlist a").click(function(e){
+		e.preventDefault();
+		alert($("#playlist a").index($(this)));
+
+	});
+
+	function skipForward(){
+		var index = tracks.indexOf(activeTrack);
 		if(index >= 0 && index < tracks.length - 1){
 			var nextItem = tracks[index + 1];
 			activeTrack = nextItem;
@@ -23,10 +38,9 @@ $(document).ready(function(){
 		}
 		player.play();
 		return activeTrack;
-	});
+	}
 
-	$("#back").click(function(e){
-		e.preventDefault();
+	function skipBack(){
 		index = tracks.indexOf(activeTrack);
 		if(index > 0){
 			var nextItem = tracks[index - 1];
@@ -39,13 +53,7 @@ $(document).ready(function(){
 		}
 		player.play();
 		return activeTrack;
-	});
-
-	$("#playlist a").click(function(e){
-		e.preventDefault();
-		alert($("#playlist a").index($(this)));
-
-	});
+	}
 
 	function loadTrack(track){
 		$("#source").attr("src", track);
