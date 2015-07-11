@@ -1,5 +1,12 @@
+function Song(title, album, year, audioUrl, coverUrl){
+	this.title = title;
+	this.album = album;
+	this.year = year;
+	this.audioUrl = audioUrl;
+	this.coverUrl = coverUrl;
+}
 $(document).ready(function(){
-	var tracks = [
+	var tracks = [											// Lose this array and retreive URL's via Song objects
 		"audio/allmylife.mp3",
 		"audio/timeslikethese.mp3",
 		"audio/myhero.mp3"
@@ -7,6 +14,41 @@ $(document).ready(function(){
 	var player = document.getElementById("player");
 	var activeTrack = tracks[0];
 	loadTrack(activeTrack);
+
+	function Song(title, album, year, audioUrl, coverUrl){
+		this.title = title;
+		this.album = album;
+		this.year = year;
+		this.audioUrl = audioUrl;
+		this.coverUrl = coverUrl;
+	}
+
+	 myHero = new Song("My Hero", "The Colour and the Shape", 1997, "audio/myhero.mp3", "img/colorshape.jpg");
+
+
+	var allMyLife = {										// Create Song objects with a constructor, pass key/value pairs with JSON (probably?)
+		title : "All My Life",
+		album : "One by One",
+		audioUrl : "audio/allmylife.mp3",
+		coverUrl : "img/onebyone.jpg",
+		year : 2002
+	}
+
+	var timesLikeThese = {
+		title : "Times Like These",
+		album : "One by One",
+		audioUrl : "audio/onebyone.mp3",
+		coverUrl : "img/colorshape.jpg",
+		year : 2002
+	}
+
+	/*var myHero = {
+		title : "My Hero",
+		album : "The Colour and the Shape",
+		audioUrl : "audio/myhero.mp3",
+		coverUrl : "img/colorshape.jpg",
+		year : 1997
+	}*/
 
 	console.log(tracks.indexOf(activeTrack));
 
@@ -26,7 +68,7 @@ $(document).ready(function(){
 
 	});
 
-	function skipForward(){
+	function skipForward(){									// Rewrite methods to iterate to audioUrl value of the next Song object 
 		var index = tracks.indexOf(activeTrack);
 		if(index >= 0 && index < tracks.length - 1){
 			var nextItem = tracks[index + 1];
@@ -40,7 +82,7 @@ $(document).ready(function(){
 		return activeTrack;
 	}
 
-	function skipBack(){
+	function skipBack(){									// Rewrite methods to iterate to "audio" value of the previos Song object 
 		index = tracks.indexOf(activeTrack);
 		if(index > 0){
 			var nextItem = tracks[index - 1];
